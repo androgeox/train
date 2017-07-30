@@ -12,40 +12,66 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class Ticket {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  Integer price;
+    private Integer price;
 
-  @Temporal(TemporalType.DATE)
-  Date buyDate;
+    @Temporal(TemporalType.DATE)
+    private Date buyDate;
 
-  Integer sitNumber;
-  String state;
+    private Integer sitNumber;
 
-  public enum TicketState {
-    SOLD, FORSELL;
+    private String state;
 
-    public static String getSold() {
-      return SOLD.toString();
+    @Temporal(TemporalType.DATE)
+    private Date beginDate;
+
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+
+    @ManyToOne
+    @JoinColumn(name = "customer")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "train")
+    private Train train;
+
+    public String getState() {
+        return state;
     }
 
-    public static String getForSell() {
-      return FORSELL.toString();
+    public void setState(String state) {
+        this.state = state;
     }
-  }
 
-  @Temporal(TemporalType.DATE)
-  Date beginDate;
-  @Temporal(TemporalType.DATE)
-  Date endDate;
+    public Customer getCustomer() {
+        return customer;
+    }
 
-  @ManyToOne
-  @JoinColumn(name = "customer")
-  private Customer customer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
-  @ManyToOne
-  @JoinColumn(name = "train")
-  private Train train;
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
+    public enum TicketState {
+        SOLD, FORSELL;
+
+        public static String getSold() {
+            return SOLD.toString();
+        }
+
+        public static String getForSell() {
+            return FORSELL.toString();
+        }
+    }
 }

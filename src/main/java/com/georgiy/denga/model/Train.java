@@ -6,28 +6,32 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 public class Train {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  Integer trainNumber;
-  String type;
-  Date departDT;
-  Date destDT;
-  Integer sitsCount;
-  Integer sitNumber;
+    private Integer trainNumber;
 
-  @OneToMany(mappedBy = "train", fetch = FetchType.EAGER)
-  private Set<Ticket> tickets;
+    private String type;
 
-  @ManyToOne
-  @JoinColumn(name = "schedule")
-  private Schedule schedule;
+    @Temporal(TemporalType.DATE)
+    private Date departDT;
+
+    @Temporal(TemporalType.DATE)
+    private Date destDT;
+
+    private Integer sitsCount;
+
+//  @OneToMany(mappedBy = "train", fetch = FetchType.EAGER)
+//  private Set<Ticket> tickets;
+//
+//  @ManyToOne
+//  @JoinColumn(name = "schedule")
+//  private Schedule schedule;
 }

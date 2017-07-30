@@ -11,13 +11,13 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 public class Schedule {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-  Date date;
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
-  @OneToMany(mappedBy = "schedule")
-  private Set<Train> trainSet;
-
+//    @OneToMany(mappedBy = "schedule")
+//    private Set<Train> trainSet;
 }
